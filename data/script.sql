@@ -38,7 +38,7 @@ CREATE TABLE productos (
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT,
     precio DECIMAL(7, 0) NOT NULL CHECK (precio >= 0),
-    stock INTEGER NOT NULL DEFAULT 0,
+    stock INTEGER NOT NULL CHECK (stock >= 0),
     image_url TEXT,
     categoria_id INTEGER REFERENCES categorias(id) ON DELETE SET NULL,
 	estado BOOLEAN DEFAULT TRUE,

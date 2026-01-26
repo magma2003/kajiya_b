@@ -14,7 +14,7 @@ const loginUser = async (req, res) => {
 
         // Generamos el Token
         const token = jwt.sign(
-            { id: user.id, email: user.email },
+            { id: user.id, email: user.email, rol: user.role },
             process.env.JWT_SECRET || 'secret_kajiya',
             { expiresIn: '1h' }
         );

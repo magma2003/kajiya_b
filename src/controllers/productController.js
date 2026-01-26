@@ -10,4 +10,24 @@ const getProductos = async (req, res) => {
     }
 };
 
-module.exports = { getProductos };
+const createProduct = async (req, res) => {
+    const { nombre, descripcion, precio, stock, image_url } = req.body;
+
+    if (Number(precio) < 0 || Number(stock) < 0) {
+        return res.status(400).json({ error: "El precio y el stock no pueden ser negativos." });
+    }
+
+    try {
+        const query = `
+            INSERT INTO productos (nombre, descripcion, precio, stock, image_url)
+            VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+        const values = [nombre, descripcion, precio, stock, image_url];
+        const result = await pool.query(query, values);
+        
+        res.status(201).json({ message: "Nueva arma forjada", producto: result.rows[0] });
+    } catch (error) {
+        res.status(500).json({ error: "Error al forjar el producto" });
+    }
+};
+
+module.exports = { getProductos, createProduct };
