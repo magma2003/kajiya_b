@@ -46,12 +46,12 @@ DB_NAME=kajiya_db
 JWT_SECRET=tu_secreto_super_seguro
 
 
-#### 3. Instalación
+### 3. Instalación
 En ambas carpetas (front y back), ejecutar para sus dependencias:
 * npm install
 
 
-##### 4. Ejecución
+### 4. Ejecución
 Backend: 
 * npm run dev (usando nodemon) o npm start.
 
@@ -59,13 +59,13 @@ Frontend:
 * npm run dev (si usas Vite).
 
 
-###### 5. EPruebas (Testing)
+### 5. EPruebas (Testing)
 El backend cuenta con pruebas de integridad y seguridad. Para ejecutarlas, sitúate en la carpeta del servidor y ejecutar:
 * npm test
 
 ---
 
-####### 🛣️ Endpoints de la API
+## 🛣️ Endpoints de la API
 
 ### 👤 Autenticación y Usuarios
 
@@ -84,3 +84,11 @@ PUT,/api/productos/:id,Modifica stock o detalles de un arma existente.,Admin
 DELETE,/api/productos/:id,Elimina un producto de la forja de datos.,Admin
 
 ---
+
+
+### DEPLOY
+Backend: 
+* https://kajiya-b.onrender.com/
+
+Frontend: 
+* https://kajiya-f.vercel.app/
