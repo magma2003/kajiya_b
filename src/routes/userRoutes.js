@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { loginUser ,registerUser} = require('../controllers/userController');
 const { verifyToken } = require('../middlewares/verifyToken.middleware');
+const { updateUser } = require('../controllers/userController');
 const pool = require('../config/db');
 
 router.post('/login', loginUser);
 router.post('/register', registerUser); // Endpoint: /api/usuarios/register
+router.put('/perfil', verifyToken, updateUser);
 
 // Ruta protegida para obtener datos del perfil
 router.get('/perfil', verifyToken, async (req, res) => {

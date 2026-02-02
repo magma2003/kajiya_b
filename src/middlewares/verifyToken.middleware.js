@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const verifyToken = (req, res, next) => {
     try {
         const Authorization = req.header("Authorization");
-    
+
         if (!Authorization) {
             return res.status(401).json({ error: "No se proporcionó un token" });
         }

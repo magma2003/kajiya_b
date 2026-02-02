@@ -14,8 +14,12 @@ const loginUser = async (req, res) => {
 
         // Generamos el Token
         const token = jwt.sign(
-            { id: user.id, email: user.email, rol: user.role },
-            process.env.JWT_SECRET || 'secret_kajiya',
+            { id: user.id, 
+                email: user.email, 
+                role: user.role 
+            },
+            process.env.JWT_SECRET //|| 'secret_kajiya'
+            ,
             { expiresIn: '1h' }
         );
 
@@ -59,4 +63,25 @@ const registerUser = async (req, res) => {
     }
 };
 
-module.exports = { loginUser, registerUser };
+const updateUser = async (req, res) => {
+    const { id } = req.user; 
+    const { nombres, apellido_paterno, apellido_materno, calle, numero, comuna, region } = req.body;
+
+    try {
+        const query = `
+            UPDATE usuarios 
+            SET nombres = $1, apellido_paterno = $2, apellido_materno = $3, 
+                calle = $4, numero = $5, comuna = $6, region = $7
+            WHERE id = $8
+            RETURNING id, nombres, apellido_paterno, apellido_materno, email, rut, role, calle, numero, comuna, region;
+        `;
+        const values = [nombres, apellido_paterno, apellido_materno, calle, numero, comuna, region, id];
+        const result = await pool.query(query, values);
+
+        res.json({ message: "Perfil actualizado", user: result.rows[0] });
+    } catch (error) {
+        res.status(500).json({ error: "Error al actualizar el perfil" });
+    }
+};
+
+module.exports = { loginUser, registerUser, updateUser };

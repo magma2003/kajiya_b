@@ -27,3 +27,5 @@ app.use('/api/productos', productRoutes);
 app.listen(PORT, () => {
   console.log(`🔥 Servidor Kajiya activo en http://localhost:${PORT}`);
 });
+
+module.exports = app; // Exportar la app para pruebas
