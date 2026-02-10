@@ -1,11 +1,12 @@
 const pool = require('../config/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { validateRut } = require('../utils/validateRut');
 
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const result = await pool.query('SELECT * FROM usuarios WHERE email = $1', [email]);
+        const result = await pool.query('SELECT id, nombres, apellido_paterno, apellido_materno, rut, email, password, foto, role, estado, calle, numero, comuna, region FROM usuarios WHERE email = $1', [email]);
         const user = result.rows[0];
 
         if (!user || !(await bcrypt.compare(password, user.password))) {
@@ -18,7 +19,7 @@ const loginUser = async (req, res) => {
                 email: user.email, 
                 role: user.role 
             },
-            process.env.JWT_SECRET //|| 'secret_kajiya'
+            process.env.JWT_SECRET
             ,
             { expiresIn: '1h' }
         );
@@ -32,7 +33,10 @@ const loginUser = async (req, res) => {
 
 
 const registerUser = async (req, res) => {
-    const { nombres, paterno, materno, rut, email, password, calle, numero, comuna, region } = req.body;
+    const { nombres, apellido_paterno, apellido_materno, rut, email, password, calle, numero, comuna, region, foto } = req.body;
+    if (!validateRut(rut)) {
+        return res.status(400).json({ error: "El RUT ingresado no es válido." });
+    }
 
     try {
         // 1. Encriptación de seguridad
@@ -42,12 +46,12 @@ const registerUser = async (req, res) => {
         // 2. Inserción en la base de datos
         const query = `
             INSERT INTO usuarios 
-            (nombres, apellido_paterno, apellido_materno, rut, email, password, calle, numero, comuna, region)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-            RETURNING id, email, nombres;
+            (nombres, apellido_paterno, apellido_materno, rut, email, password, calle, numero, comuna, region, foto)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+            RETURNING id, email, nombres, apellido_paterno, apellido_materno, calle, numero, comuna, region, foto;
         `;
-        
-        const values = [nombres, paterno, materno, rut, email, hashedPassword, calle, numero, comuna, region];
+
+        const values = [nombres, apellido_paterno, apellido_materno, rut, email, hashedPassword, calle, numero, comuna, region, foto];
         const result = await pool.query(query, values);
 
         res.status(201).json({ 
@@ -65,17 +69,17 @@ const registerUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const { id } = req.user; 
-    const { nombres, apellido_paterno, apellido_materno, calle, numero, comuna, region } = req.body;
+    const { nombres, apellido_paterno, apellido_materno, calle, numero, comuna, region, foto } = req.body;
 
     try {
         const query = `
             UPDATE usuarios 
             SET nombres = $1, apellido_paterno = $2, apellido_materno = $3, 
-                calle = $4, numero = $5, comuna = $6, region = $7
-            WHERE id = $8
-            RETURNING id, nombres, apellido_paterno, apellido_materno, email, rut, role, calle, numero, comuna, region;
+                calle = $4, numero = $5, comuna = $6, region = $7, foto = $8
+            WHERE id = $9
+            RETURNING id, nombres, apellido_paterno, apellido_materno, email, rut, role, calle, numero, comuna, region, foto;
         `;
-        const values = [nombres, apellido_paterno, apellido_materno, calle, numero, comuna, region, id];
+        const values = [nombres, apellido_paterno, apellido_materno, calle, numero, comuna, region, foto, id];
         const result = await pool.query(query, values);
 
         res.json({ message: "Perfil actualizado", user: result.rows[0] });

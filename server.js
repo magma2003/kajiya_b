@@ -5,6 +5,7 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const userRoutes = require('./src/routes/userRoutes');
 const productRoutes = require('./src/routes/productRoutes');
+const orderRoutes = require('./src/routes/orderRoutes');
 
 const pool = require('./src/config/db');
 
@@ -15,7 +16,6 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Rutas base de prueba
 app.get('/', (req, res) => {
   res.send({ message: "Bienvenido a la Forja de Kajiya API" });
 });
@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 // Uso de rutas
 app.use('/api/usuarios', userRoutes);
 app.use('/api/productos', productRoutes);
+app.use('/api/pedidos', orderRoutes);
 
 app.listen(PORT, () => {
   console.log(`🔥 Servidor Kajiya activo en http://localhost:${PORT}`);

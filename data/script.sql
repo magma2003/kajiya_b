@@ -89,60 +89,57 @@ INSERT INTO categorias (nombre, descripcion) VALUES
 ('Katanas', 'Espadas largas tradicionales con hoja curva de un solo filo.'),
 ('Tantos', 'Dagas japonesas de hoja recta o ligeramente curva.'),
 ('Wakizashis', 'Espadas cortas tradicionales usadas junto a la katana.'),
-('Dagas', 'Armas cortas como Tanto y cuchillos ceremoniales.'),
+('Tachi', 'Espada tradicional japonesa, antecesora de la katana.'),
 ('Espadas Largas', 'Espadas de gran longitud como Nodachis y Odachis.'),
 ('Espadas de Madera', 'Bokkens y espadas de entrenamiento de madera.');
 
 -- 2. Insertar Usuarios (Admin y Cliente) clave 1234
-INSERT INTO usuarios (rut, nombres, apellido_paterno, apellido_materno, email, password, role, foto) VALUES 
-('1234','Hattori', 'Hanzo', 'The Master', 'admin@kajiya.com', '$2b$10$Wjj60AJ7s9yZoXqkt5DaDOTadJgts/ppBk/PiUGZZAG.7/Si91nL.', 'admin', 'https://api.dicebear.com/7.x/avataaars/svg?seed=Admin'),
-('4321','Kenji', 'Sato', 'Tanaka', 'cliente@kajiya.com', '$2b$10$Wjj60AJ7s9yZoXqkt5DaDOTadJgts/ppBk/PiUGZZAG.7/Si91nL.', 'client', 'https://api.dicebear.com/7.x/avataaars/svg?seed=Kenji');
+INSERT INTO usuarios (rut, nombres, apellido_paterno, apellido_materno, email, password, role, foto,comuna,region) VALUES 
+('1234','Hattori', 'Hanzo', 'The Master', 'admin@kajiya.com', '$2b$10$Wjj60AJ7s9yZoXqkt5DaDOTadJgts/ppBk/PiUGZZAG.7/Si91nL.', 'admin', 'https://api.dicebear.com/7.x/avataaars/svg?seed=Admin','Valparaiso','5'),
+('4321','Kenji', 'Sato', 'Tanaka', 'cliente@kajiya.com', '$2b$10$Wjj60AJ7s9yZoXqkt5DaDOTadJgts/ppBk/PiUGZZAG.7/Si91nL.', 'client', 'https://api.dicebear.com/7.x/avataaars/svg?seed=Kenji','Valparaiso','5');
 
 -- 3. Insertar Productos Iniciales
 -- 1. Katanas (ID 1)
 INSERT INTO productos (nombre, descripcion, precio, stock, image_url, categoria_id) VALUES
-('Katana Muramasa', 'Hoja forjada en acero T10 con Hamon real.', 850000, 3, 'https://placehold.co/600x400/1a1a1a/e63946?text=Katana+Muramasa', 1),
-('Katana Musashi', 'Doble anillo en la tsuba, acero damasco.', 450000, 5, 'https://placehold.co/600x400/1a1a1a/e63946?text=Katana+Musashi', 1),
-('Katana Sakura', 'Acabados en seda rosa y flores de cerezo.', 210000, 8, 'https://placehold.co/600x400/1a1a1a/e63946?text=Katana+Sakura', 1),
-('Katana Onimaru', 'Hoja negra con filo rojo carmesí.', 550000, 2, 'https://placehold.co/600x400/1a1a1a/e63946?text=Katana+Onimaru', 1),
-('Katana Imperial', 'Accesorios bañados en oro de 24k.', 1500000, 1, 'https://placehold.co/600x400/1a1a1a/e63946?text=Katana+Imperial', 1);
+('Katana Muramasa', 'Hoja forjada en acero T10 con Hamon real.', 850000, 3, 'https://katana.store/cdn/shop/files/muramasa-wakizashi-587.webp', 1),
+('Katana Musashi', 'Doble anillo en la tsuba, acero damasco.', 450000, 5, 'https://katana.store/cdn/shop/products/black-dragon-katana-710.webp', 1),
+('Katana Ghost of Tsushima', 'Acabados basados en video juego de PS.', 210000, 8, 'https://katana.store/cdn/shop/files/ghost-of-tsushima-katana-465.webp', 1),
+('Katana Fire Dragon ', 'Hoja negra con filo rojo carmesí.', 550000, 2, 'https://katana.store/cdn/shop/products/fire-dragon-katana-349.webp', 1),
+('Katana Black Dragon', 'Accesorios bañados en oro de 24k.', 1500000, 0, 'https://katana.store/cdn/shop/products/black-dragon-katana-710.webp', 1);
 
 -- 2. Tantos (ID 2)
 INSERT INTO productos (nombre, descripcion, precio, stock, image_url, categoria_id) VALUES
-('Tanto Shirasaya', 'Montura minimalista en madera natural.', 120000, 4, 'https://placehold.co/600x400/1a1a1a/e63946?text=Tanto+Shirasaya', 2),
-('Tanto Kaiken', 'Daga oculta usada tradicionalmente por mujeres.', 95000, 10, 'https://placehold.co/600x400/1a1a1a/e63946?text=Tanto+Kaiken', 2),
-('Tanto de Combate', 'Hoja gruesa diseñada para penetración.', 150000, 6, 'https://placehold.co/600x400/1a1a1a/e63946?text=Tanto+Combat', 2),
-('Tanto Ceremonial', 'Grabados de dragón en la hoja de acero.', 185000, 3, 'https://placehold.co/600x400/1a1a1a/e63946?text=Tanto+Ceremonial', 2),
-('Tanto Hira-Zukuri', 'Hoja plana sin nervio central (Shinogi).', 135000, 5, 'https://placehold.co/600x400/1a1a1a/e63946?text=Tanto+Hira', 2);
+('Tanto T10', 'Hoja forjada en acero T10 con Hamon real.', 120000, 4, 'https://katana.store/cdn/shop/files/t10-tanto-280.webp', 2),
+('Tanto Combat', 'Hoja gruesa diseñada para penetración.', 150000, 6, 'https://katana.store/cdn/shop/files/combat-tanto-403.webp', 2),
+('Tanto Shirasaya', 'Grabados de dragón en la hoja de acero.', 185000, 3, 'https://katana.store/cdn/shop/files/shirasaya-tanto-497.webp', 2),
+('Tanto Military', 'Hoja combina la venerada artesanía de la espada japonesa con la estética militar contemporánea.', 135000, 5, 'https://katana.store/cdn/shop/files/tanto-military-253.webp', 2);
 
 -- 3. Wakizashis (ID 3)
 INSERT INTO productos (nombre, descripcion, precio, stock, image_url, categoria_id) VALUES
-('Wakizashi Guardian', 'El compañero fiel de la Katana.', 320000, 4, 'https://placehold.co/600x400/1a1a1a/e63946?text=Wakizashi+Guardian', 3),
-('Wakizashi Ronin', 'Acero al carbono con pátina envejecida.', 280000, 2, 'https://placehold.co/600x400/1a1a1a/e63946?text=Wakizashi+Ronin', 3),
-('Wakizashi de Honor', 'Koshirae elegante en seda azul oscura.', 350000, 3, 'https://placehold.co/600x400/1a1a1a/e63946?text=Wakizashi+Honor', 3),
-('Wakizashi Elite', 'Hoja plegada con 2048 capas.', 420000, 1, 'https://placehold.co/600x400/1a1a1a/e63946?text=Wakizashi+Elite', 3),
-('Wakizashi Practicante', 'Ideal para Iaido en espacios reducidos.', 195000, 7, 'https://placehold.co/600x400/1a1a1a/e63946?text=Wakizashi+Practice', 3);
+('Wakizashi Ninja', 'El compañero fiel de la Katana.', 320000, 4, 'https://katana.store/cdn/shop/files/ninja-wakizashi-950.webp', 3),
+('Wakizashi Ko', 'Acero al carbono con pátina envejecida.', 280000, 2, 'https://katana.store/cdn/shop/files/ko-wakizashi-472.webp', 3),
+('Wakizashi Full Tang', 'Koshirae elegante en seda azul oscura.', 350000, 3, 'https://katana.store/cdn/shop/files/full-tang-wakizashi-800.webp', 3),
+('Wakizashi Bizen', 'Hoja plegada con 2048 capas.', 420000, 1, 'https://katana.store/cdn/shop/files/bizen-wakizashi-509.webp', 3),
+('Wakizashi Training', 'Ideal para Iaido en espacios reducidos.', 195000, 7, 'https://katana.store/cdn/shop/files/training-wakizashi-237.webp', 3);
 
 -- 4. Dagas (ID 4)
 INSERT INTO productos (nombre, descripcion, precio, stock, image_url, categoria_id) VALUES
-('Daga Kunai Set', 'Juego de 3 dagas de lanzamiento equilibradas.', 45000, 20, 'https://placehold.co/600x400/1a1a1a/e63946?text=Kunai+Set', 4),
-('Daga de Ritual', 'Hoja de obsidiana decorativa con mango tallado.', 80000, 4, 'https://placehold.co/600x400/1a1a1a/e63946?text=Ritual+Dagger', 4),
-('Daga Yoroi-oshi', 'Diseñada para perforar armaduras samurai.', 110000, 2, 'https://placehold.co/600x400/1a1a1a/e63946?text=Yoroi+Oshi', 4),
-('Sais de Acero', 'Par de dagas tridentes para defensa.', 90000, 6, 'https://placehold.co/600x400/1a1a1a/e63946?text=Sais+Steel', 4),
-('Daga Táctica Black', 'Recubrimiento antireflejo y mango de polímero.', 55000, 15, 'https://placehold.co/600x400/1a1a1a/e63946?text=Tactical+Dagger', 4);
+('Tachi Cherry Blossom', 'Daga decorativa con diseño de flores de ciruelo.', 45000, 20, 'https://katana.store/cdn/shop/files/cherry-blossom-tachi-832.webp', 4),
+('Tachi Gray', 'Daga de acero gris con acabado elegante.', 80000, 4, 'https://katana.store/cdn/shop/files/gray-tachi-931.webp', 4),
+('Tachi Red', 'Daga roja con detalles decorativos.', 110000, 2, 'https://katana.store/cdn/shop/files/red-tachi-539.webp', 4),
+('Tachi T10', 'Daga forjada en acero T10.', 55000, 15, 'https://katana.store/cdn/shop/files/t10-tachi-454.webp', 4);
 
 -- 5. Espadas Largas (ID 5)
 INSERT INTO productos (nombre, descripcion, precio, stock, image_url, categoria_id) VALUES
-('Nodachi O-Katana', 'Espada de gran longitud (130cm).', 1250000, 2, 'https://placehold.co/600x400/1a1a1a/e63946?text=Nodachi+Katana', 5),
-('Odachi Kage', 'La sombra del campo de batalla. Acero negro.', 1100000, 3, 'https://placehold.co/600x400/1a1a1a/e63946?text=Odachi+Kage', 5),
-('Nagaki Master', 'Hoja extra larga con empuñadura reforzada.', 980000, 2, 'https://placehold.co/600x400/1a1a1a/e63946?text=Nagaki+Master', 5),
-('Espada Nodachi Zen', 'Equilibrio superior a pesar de su tamaño.', 1350000, 1, 'https://placehold.co/600x400/1a1a1a/e63946?text=Nodachi+Zen', 5),
-('Odachi Ancestral', 'Réplica de pieza de museo, acero plegado.', 2500000, 1, 'https://placehold.co/600x400/1a1a1a/e63946?text=Odachi+Ancestral', 5);
+('Sword Enma', 'El ilustre espadachín Zoro Roronoa empuñó esta extraordinaria espada, famosa por su filo inigualable.', 1250000, 2, 'https://katana.store/cdn/shop/files/enma-sword-652.webp', 5),
+('Sword Inosuke', 'Nuestra espada Inosuke destaca por su patrón de hoja dentada , que evoca el estilo de combate bestial de Inosuke.', 1100000, 3, 'https://katana.store/cdn/shop/files/inosuke-sword-882.webp', 5),
+('Sword Sasuke', 'Conocida frecuentemente como la " Espada Cortadora de Hierba ", la Kusanagi ocupa un lugar legendario en el mundo de Naruto.', 1350000, 1, 'https://katana.store/cdn/shop/files/sasuke-sword-935.webp', 5),
+('Sword Rurouni Kenshin ', 'Se popularizó gracias al manga y anime -Rurouni Kenshin- en el que el protagonista , Himura Kenshin.', 1450000, 10, 'https://katana.store/cdn/shop/files/rurouni-kenshin-sword-314.webp', 5),
+('Sword Japan Tachi', 'Vaina negra adornada con motivos florales, es la verdadera encarnación de la elegancia atemporal y el profundo simbolismo de la cultura japonesa.', 2500000, 1, 'https://katana.store/cdn/shop/files/tachi-sword-japan-616.webp', 5);
 
 -- 6. Espadas de Madera (ID 6)
 INSERT INTO productos (nombre, descripcion, precio, stock, image_url, categoria_id) VALUES
-('Bokken Roble Rojo', 'Madera densa para práctica de contacto.', 45000, 25, 'https://placehold.co/600x400/1a1a1a/e63946?text=Bokken+Red+Oak', 6),
-('Bokken Roble Blanco', 'Más ligero y flexible para Kata.', 55000, 18, 'https://placehold.co/600x400/1a1a1a/e63946?text=Bokken+White+Oak', 6),
-('Suburito Pesado', 'Bokken extra grueso para fortalecer hombros.', 65000, 12, 'https://placehold.co/600x400/1a1a1a/e63946?text=Suburito+Trainer', 6),
-('Shinai de Bambú', 'Espada de láminas para Kendo competitivo.', 38000, 30, 'https://placehold.co/600x400/1a1a1a/e63946?text=Shinai+Bambu', 6),
-('Jo de Madera', 'Bastón corto complementario para entrenamiento.', 25000, 40, 'https://placehold.co/600x400/1a1a1a/e63946?text=Jo+Staff', 6);
+('Bokken Shirasaya', 'Esta exquisita espada de entrenamiento imita el peso y la sensación de una katana tradicional.', 45000, 25, 'https://katana.store/cdn/shop/files/shirasaya-bokken-372.webp', 6),
+('Bokken Kendo', 'El Kendo Bokken es una herramienta esencial tanto para principiantes como para practicantes avanzados de Kendo, el arte marcial tradicional japonés.', 55000, 18, 'https://katana.store/cdn/shop/files/kendo-bokken-895.webp', 6),
+('Bokken Daito', 'Espada de madera de alta calidad es perfecta para perfeccionar tus habilidades de forma segura y efectiva', 65000, 12, 'https://katana.store/cdn/shop/files/bokken-daito-682.webp', 6),
+('Bokken Straight', 'Un puente hacia las auténticas artes marciales japonesas.', 25000, 40, 'https://katana.store/cdn/shop/files/straight-bokken-491.webp', 6);

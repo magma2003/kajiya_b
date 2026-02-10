@@ -36,4 +36,38 @@ const createProduct = async (req, res) => {
     }
 };
 
-module.exports = { getProductos, createProduct };
+const updateProduct = async (req, res) => {
+    const { id } = req.params;
+    const { nombre, descripcion, precio, stock, categoria, image_url } = req.body;
+
+    try {
+        const query = `
+            UPDATE productos 
+            SET nombre = $1, 
+                descripcion = $2, 
+                precio = $3, 
+                stock = $4, 
+                categoria = $5, 
+                image_url = $6
+            WHERE id = $7
+            RETURNING *;
+        `;
+        
+        const values = [nombre, descripcion, precio, stock, categoria, image_url, id];
+        const result = await pool.query(query, values);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Producto no encontrado en la forja." });
+        }
+
+        res.json({ 
+            message: "Producto actualizado con éxito", 
+            producto: result.rows[0] 
+        });
+    } catch (error) {
+        console.error("Error al actualizar producto:", error.message);
+        res.status(500).json({ error: "Error al intentar modificar el producto." });
+    }
+};
+
+module.exports = { getProductos, createProduct, updateProduct };

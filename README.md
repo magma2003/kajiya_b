@@ -2,6 +2,8 @@
 
 Bienvenido a la **Forja Kajiya**, una aplicación Full Stack diseñada para la gestión y venta de armas artesanales. Este proyecto implementa autenticación robusta, gestión de roles y un catálogo interactivo con filtros avanzados.
 
+---
+
 ## 🚀 Estructura del Proyecto
 
 El proyecto está dividido en dos partes principales:
@@ -12,16 +14,16 @@ El proyecto está dividido en dos partes principales:
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+### 🛠️ Tecnologías Utilizadas
 
-### Backend
+### 1. Backend
 * **Node.js & Express**: Servidor y API REST.
 * **PostgreSQL**: Base de datos relacional.
 * **JWT (JSON Web Tokens)**: Autenticación segura.
 * **Bcrypt.js**: Encriptación de contraseñas.
 * **Jest & Supertest**: Pruebas unitarias y de integración.
 
-### Frontend
+### 2. Frontend
 * **React**: Biblioteca para la interfaz de usuario.
 * **Context API**: Gestión de estados globales (Usuario y Carrito).
 * **Bootstrap**: Estilizado y componentes responsivos.
@@ -29,7 +31,7 @@ El proyecto está dividido en dos partes principales:
 
 ---
 
-## ⚙️ Configuración e Instalación
+#### ⚙️ Configuración e Instalación
 
 ### 1. Requisitos Previos
 * Node.js instalado.
